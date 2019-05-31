@@ -6,8 +6,15 @@
 
  	
  	app.post('/noticias/buscar', function(req,res){
- 		var id_noticia = req.body;
- 		res.send(id_noticia);
+ 		var idNoticia = req.body;
+ 		
+ 		var connetion = app.config.dbConnection();
+ 		var noticiasModel = app.app.models.noticiasModel;
+
+ 		noticiasModel.getNoticia(idNoticia, connetion, function(error, result){
+ 			res.render("noticias/noticia", {noticia : result});
+ 		});
+
  	});
 
 
