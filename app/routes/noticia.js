@@ -8,9 +8,9 @@
  	app.post('/noticias/buscar', function(req,res){
  		var idNoticia = req.body;
  		var connetion = app.config.dbConnection();
- 		var noticiasModel = app.app.models.noticiasModel;
+ 		var noticiasDao = new app.app.models.NoticiasDAO(connetion);
 
- 		noticiasModel.getNoticia(idNoticia, connetion,function(error, result){
+ 		noticiasDao.getNoticia(idNoticia, function(error, result){
  			res.render("noticias/noticia", {noticia : result});
  		});
 
