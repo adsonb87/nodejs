@@ -1,21 +1,17 @@
  module.exports = function(app){
  	
  	app.get('/buscarNoticias',function(req, res){
-		res.render("noticias/buscarNoticias");
+		app.app.controllers.noticias.buscarNoticias(app,req,res);
 	});
 
  	
  	app.post('/noticias/buscar', function(req,res){
- 		var idNoticia = req.body;
- 		var connetion = app.config.dbConnection();
- 		var noticiasDao = new app.app.models.NoticiasDAO(connetion);
-
- 		noticiasDao.getNoticia(idNoticia, function(error, result){
- 			res.render("noticias/noticia", {noticia : result});
- 		});
-
+ 		app.app.controllers.noticias.noticiasBuscar(app,req,res);
  	});
 
+ 	app.get('/noticias',function(req, res){
+		app.app.controllers.noticias.noticias(app,req,res);
+	});
 
  	/*app.get('/noticia', function(req,res){
  		
