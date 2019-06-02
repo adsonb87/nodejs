@@ -5,7 +5,7 @@ module.exports = function(){
 	}
 
 	this.getNoticia = function(idNoticia, connection, callback){
-		connection.query('select * from noticias where id_noticia = ?', idNoticia, callback);
+		connection.query('select * from noticias where ?', idNoticia, callback);
 	}
 
 	this.salvarNoticia = function(noticia, connection, callback){
